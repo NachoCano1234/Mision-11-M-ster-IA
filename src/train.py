@@ -20,7 +20,7 @@ def train():
         mlflow.log_param('n_estimators', n_estimators)
         mlflow.log_param('random_state', 42)
         mlflow.log_metric('accuracy', accuracy)
-        mlflow.sklearn.log_model(model, artifact_path='model')
+        mlflow.sklearn.log_model(model, artifact_path='model', skops_trusted_types=['sklearn.tree._tree.Tree'])
     Path('models').mkdir(exist_ok=True)
     joblib.dump(model, 'models/model.joblib')
     print(f'accuracy={accuracy:.4f}')
